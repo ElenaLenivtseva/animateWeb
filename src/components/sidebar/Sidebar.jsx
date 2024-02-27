@@ -4,6 +4,24 @@ import "/Sidebar.scss";
 import Links from "./links/Links";
 import ToggleButton from "./toggleButton/ToggleButton";
 
+const variants = {
+  open: {
+    clipPath: 'circle(1200px at 50px 50px)',
+    transition: {
+      type: 'spring',
+      stiffness: 20,
+    },
+  },
+  closed: {
+    clipPath: 'circle(30px at 50px 50px)',
+    transition: {
+      delay: 0.5,
+      type: 'spring',
+      stiffness: 20,
+      damping: 40,
+    },
+  }
+}
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const variants = {

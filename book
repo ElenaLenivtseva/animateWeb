@@ -1,0 +1,49 @@
+1. Хочешь, чтобы линии бургер меню превращались в крестик при открытии? Сделай их из svg, а потом заанимируй, поменяв положение верхней и нижней.
+<svg width="23" height="23" viewBox="0 0 23 23">
+        <motion.path
+          strokeWidth="3"
+          stroke="black"
+          strokeLinecap="round"
+          variants={{
+            closed: { d: "M 2 2.5 L 20 2.5" },
+            open: { d: "M 3 16.5 L 17 2.5" },
+          }}
+        />
+        <motion.path strokeWidth="3" stroke="black" strokeLinecap="round" d='M 2 9.423 L 20 9.423'/>
+        <motion.path
+          strokeWidth="3"
+          stroke="black"
+          strokeLinecap="round"
+          variants={{
+            closed: { d: "M 2 2.5 L 20 2.5" },
+            open: { d: "M 3 16.5 L 17 2.5" },
+          }}
+        />
+      </svg>
+
+
+2. Как сделать так, чтобы ссылки меню при открытии выпадали по череди,а при закрытии "захлапывались" обратно так же по очереди?
+const variants = {
+  open: {
+    transition:{
+      staggerChildren:0.1
+    }
+  },
+  closed: {
+    transition:{
+      staggerChildren:0.05,
+      staggerDirection: -1,
+    }
+  }
+}
+Еще доп анимация на сами ссылки была
+onst itemVariants = {
+  open: {
+    y:0,
+    opacity: 1,
+  },
+  closed: {
+    y:50,
+    opacity: 0,
+  }
+}
