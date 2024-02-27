@@ -47,3 +47,34 @@ onst itemVariants = {
     opacity: 0,
   }
 }
+
+
+3. Не обязательно добавлять initial, м и только animate.
+4. Если хочешь бесконечную анимацию просто
+scrollButton: {
+    opacity: 0,
+    y: 10,
+    transition: {
+        duration: 2,
+        repeat: Infinity,
+    }
+  }
+
+
+5. Как сделать бегущую строку?
+const sliderVariants = {
+  initial: {
+    x: 0,
+  },
+  animate: {
+    x: '-220%',
+    transition: {
+        repeat: Infinity,
+        repeatType: 'mirror',
+        duration: 20,
+    }
+  },
+};
+
+6. Чтобы возвращалось обратно
+repeatType: 'mirror',
