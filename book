@@ -181,4 +181,8 @@ const Portfolio = () => {
               transition={{
                 duration: 3,
               }}
-              
+
+
+
+
+НАДО ОТРЕФАКТОРИТЬ ОТПРАВКУ ФОРМЫ!
