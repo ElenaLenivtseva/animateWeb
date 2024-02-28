@@ -125,3 +125,17 @@ function Parallax({ type }) {
     </div>
   );
 }
+
+
+8. Нужна анимация при скролле? Есть 2 варианта, первый variants и whileInView на компоненте. Второй вариант - variants и хук useInView. Тогда вот так
+const ref = useRef();
+  const isInView = useInView(ref, { margin: "-100px" });
+  return (
+    <motion.div
+      className="services"
+      variants={variants}
+      initial="initial"
+      // whileInView='animate'
+      ref={ref}
+      animate={isInView && 'animate'}
+    >
