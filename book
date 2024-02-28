@@ -78,3 +78,50 @@ const sliderVariants = {
 
 6. Чтобы возвращалось обратно
 repeatType: 'mirror',
+
+
+
+
+7. Анимация параллакса. не забудь еще overflow:hidden на блок добавить общий
+Суть такова: создаешь ref, в него помещаешь весь блок, где параллакс. Пов offset настраиваешь направление скролла. ну типа. Потом юзаешь useTransform - в нем уже конкретные анимации. Там соотносится [0, 1] и ["0%", "500%"]. 0=0%. 1=500%. Ты понояла.Потом эти переменные, в которых useTransform, помещаешь в стили, вот прям в style у элементов, где нужна анимация.
+
+import { motion, useScroll, useTransform } from "framer-motion";
+
+function Parallax({ type }) {
+  const ref = useRef();
+  const [scrollYProgress] = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "500%"]);
+  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  return (
+    <div
+      className="parallax"
+      ref={ref}
+      style={{
+        background:
+          type === "services"
+            ? "linear-gradient(180deg, #111132, #0c0c1d)"
+            : "linear-gradient(180deg, #111132, #505064)",
+      }}
+    >
+      <motion.h1 style={{ y: yText }}>
+        {type === "services" ? "What We do?" : "What We Did"}
+      </motion.h1>
+      <motion.div className="mountains"></motion.div>
+      <motion.div
+        className="planets"
+        style={{
+          y: yBg,
+          // bg потому что у нас 2 параллакса, где разница ток в картинке
+          backgroundImage: `url(${
+            type === "services" ? "/planets.png" : "/sun.png"
+          })`,
+        }}
+      ></motion.div>
+      <motion.div style={{ x: yBg }} className="start"></motion.div>
+    </div>
+  );
+}
