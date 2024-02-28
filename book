@@ -143,7 +143,7 @@ const ref = useRef();
 
 9. Хочешь прогрессбар?
 Не забудь импортнуть хуки и motion
-useSping это useTransition типа, нно сразу со useSpring
+useSping это useTransform типа, нно сразу со useSpring
 1. ref на элементов
 2. переменная из useScroll
 3. Переменная из useSpring, которую запихнешь в style компонента
