@@ -159,3 +159,26 @@ const Portfolio = () => {
         <h1>Featured Works</h1>
         <motion.div className="progressBar" style={{scaleX}}></motion.div>
     </div>
+
+
+10. Запомни, что motion.path не работает с whileInView!
+
+<motion.path
+            initial={{pathLength:0}}
+            whileInView={{pathLength:1}}
+            transition={{
+                duration: 3,
+            }}
+
+Это не верно, нужен хук useInView
+
+ const ref = useRef();
+  const isInView = useInView(ref, { margin: "-100px" });
+  ref - это верхний родительский компонент нашего svg. Т.е. весь блок
+  а вот так выглядит path<motion.path (не весь встаивла, потому что весь тут и не нужен)
+              initial={{ pathLength: 0 }}
+              isInView={isInView && { pathLength: 1 }}
+              transition={{
+                duration: 3,
+              }}
+              
