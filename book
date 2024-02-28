@@ -139,3 +139,23 @@ const ref = useRef();
       ref={ref}
       animate={isInView && 'animate'}
     >
+
+
+9. Хочешь прогрессбар?
+Не забудь импортнуть хуки и motion
+useSping это useTransition типа, нно сразу со useSpring
+1. ref на элементов
+2. переменная из useScroll
+3. Переменная из useSpring, которую запихнешь в style компонента
+const Portfolio = () => {
+    const ref = useRef()
+    const {scrollYProgress} = useScroll({target:ref, offset:['end end', 'start start']})
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30, -----как я пон, это шаг
+    })
+  return <div className="portfolio" ref={ref}> ------position: relative
+    <div className="progress"> ----------------------position: sticky
+        <h1>Featured Works</h1>
+        <motion.div className="progressBar" style={{scaleX}}></motion.div>
+    </div>
