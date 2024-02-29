@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .services {
     background: linear-gradient(180deg, #0c0c1d, #111132);
     height: 100%;
@@ -11,29 +13,58 @@
         display: flex;
         align-items: center;
         gap: 20px;
-p {
-    font-weight: 200;
-    font-size: 20px;
-    color: gray;
-    text-align: right;
-}
+
+        @include mobile {
+            align-self: center;
+            text-align: center;
+            flex-direction: column;
+
+        }
+
+        p {
+            font-weight: 200;
+            font-size: 20px;
+            color: gray;
+            text-align: right;
+        }
 
         hr {
             width: 500px;
             border: none;
             border-top: 0.5px solid gray;
+
+            @include mobile {
+                width: 300px;
+
+            }
         }
     }
+
     .titleContainer {
         flex: 2;
         display: flex;
         flex-direction: column;
         align-items: center;
 
+        @include mobile {
+            width: 100%;
+
+
+        }
+
         .title {
             display: flex;
             align-items: center;
             gap: 50px;
+
+            @include mobile {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+
+
+            }
+
             img {
                 width: 300px;
                 height: 100px;
@@ -43,11 +74,27 @@ p {
                 -moz-border-radius: 50px;
                 -ms-border-radius: 50px;
                 -o-border-radius: 50px;
-}
+
+                @include mobile {
+                    width: 200px;
+                    height: 50px;
+
+
+
+                }
+            }
+
             h1 {
                 font-size: 96px;
                 font-weight: 100;
+
+                @include mobile {
+                    font-size: 36px;
+
+
+                }
             }
+
             button {
                 width: 300px;
                 background-color: orange;
@@ -59,14 +106,29 @@ p {
                 -moz-border-radius: 50px;
                 -ms-border-radius: 50px;
                 -o-border-radius: 50px;
-}
+
+                @include mobile {
+                    font-size: 16px;
+                    width: 150px;
+                    height: 50px;
+
+
+
+                }
+            }
         }
     }
+
     .listContainer {
         flex: 2;
         display: flex;
         max-width: 1366px;
         margin: auto;
+
+        @include mobile {
+            flex-direction: column;
+            width: 100%;
+        }
 
         .box {
             padding: 50px;
@@ -75,11 +137,37 @@ p {
             flex-direction: column;
             justify-content: space-between;
 
+            @include mobile {
+                border: none;
+                align-items: center;
+                gap: 10px;
+            }
+
+            p {
+                @include mobile {
+                    display: none;
+                }
+            }
+
+
             button {
                 background: orange;
                 padding: 10px;
                 cursor: pointer;
                 border: none;
+
+                @include mobile {
+                    background: transparent;
+                    border: 1px solid orange;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    -ms-border-radius: 5px;
+                    -o-border-radius: 5px;
+                    width: 50%;
+                    color: orange;
+                    padding: 5px;
+                }
             }
         }
     }
