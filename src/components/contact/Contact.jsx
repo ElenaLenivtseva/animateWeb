@@ -22,23 +22,27 @@ const Contact = () => {
   const ref = useRef();
   const formRef = useRef();
   const isInView = useInView(ref, { margin: "-100px" });
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-
+  const [status, setStatus] = useState("Initial");
+  const [formInputs, setFormInputs] = useState(initialForm);
+  const initialForm = {
+    name: "",
+    email: "",
+    message: "",
+  };
   const sendEmail = (e) => {
     e.preventDefault();
-
+    setFormInputs(initialForm)
     emailjs
       .sendForm("service_m6hc3id", "template_d9ltt0j", formRef.current, {
         publicKey: "PEzI5oUS4rKGNf-3v",
       })
       .then(
         () => {
-          setSuccess(true);
+          setStatus("success");
           console.log("SUCCESS!");
         },
         (error) => {
-          setError(true);
+          setStatus("error");
           console.log("FAILED...", error.text);
         }
       );
@@ -102,12 +106,49 @@ const Contact = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 4, duration: 1 }}
         >
-          <input type="text" required placeholder="Name" name='name'/>
-          <input type="email" required placeholder="Email" name='email'/>
-          <textarea required rows={8} placeholder="Message" name='message'/>
+          <input
+            type="text"
+            required
+            placeholder="Name"
+            name="name"
+            value={formInputs.name}
+            onChange={(e)=>{
+              setFormInputs({
+                ...formInputs,
+                name: e.target.value,
+              })
+            }}
+          />
+          <input
+            type="email"
+            required
+            placeholder="Email"
+            name="email"
+            value={formInputs.email}
+            onChange={(e)=>{
+              setFormInputs({
+                ...formInputs,
+                email: e.target.value,
+              })
+            }}
+          />
+          <textarea
+            required
+            rows={8}
+            placeholder="Message"
+            name="message"
+            value={formInputs.message}
+            onChange={(e)=>{
+              setFormInputs({
+                ...formInputs,
+                message: e.target.value,
+              })
+            }}
+          />
           <button>Submit</button>
-          {error && 'error'}
-          {success && 'success'}
+          {status === "Initial" && ""}
+          {status === "success" && "Your message is send successfully"}
+          {status === "error" && "Something is going wrong. Try again"}
         </motion.form>
       </div>
     </motion.div>
